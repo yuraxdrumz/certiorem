@@ -1,11 +1,12 @@
 {
-  "name": "observable",
+  "name": "certiorem",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "an implementation of the observer pattern in node using event emitter",
+  "main": "dist/backend.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --progress --colors --watch"
+    "start": "webpack --progress --colors --watch",
+    "build":"webpack -p"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",

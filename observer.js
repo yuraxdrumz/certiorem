@@ -1,24 +1,26 @@
+// observer class
 export default class Observer{
-  constructor(id, parentEmitter){
-    this.id = id
+  constructor(name, parentEmitter){
+    this.name = name
     this.parentEmitter = parentEmitter
-    this.handleStart = this.handleStart.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.parentEmitter.addListener('start', this.handleStart)
-    this.parentEmitter.addListener('change', this.handleChange)
-
   }
-  handleStart(id, job){
-    console.log(`${this.id} was notified of start`)
+  // remove listener on a specific event, this.name is passed an will be compared to fn.name which is set on subscription
+  unsubscribe(label){
+    this.parentEmitter.removeListener(label, this.name)
   }
-  handleChange(id, change){
-    console.log(`${this.id} was notified of change: id: ${id}, ${JSON.stringify(change)}`)
-    if(this.id === 2){
-      console.log(`${this.id} was deleted`)
-      this.deactivateChange('change', this.handleChange)
-    }
+  // add a listener on a specific event, add this.name on fn.name
+  subscribe(label, fn){
+    Object.defineProperty(fn,'name',{
+      enumerable: false,
+      configurable: true,
+      writable: true,
+      value: this.name
+    })
+    // bind fn to this
+    this.parentEmitter.addListener(label, fn.bind(this))
   }
-  deactivateChange(label, callback){
-    this.parentEmitter.removeListener(label, callback)
+  // emit change to parent
+  emit(label, ...args){
+    this.parentEmitter.childNotify(label, ...args)
   }
 }
