@@ -1,7 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
 const fs = require('fs')
-const WebpackNodeServerPlugin = require('webpack-node-server-plugin')
 
 let nodeModules = {}
 fs.readdirSync('node_modules')
@@ -13,7 +12,7 @@ fs.readdirSync('node_modules')
   })
 
 module.exports = {
-  entry: ['babel-polyfill','./index.js'],
+  entry: ['./index.js'],
   target: 'node',
   output: {
     path: path.join(__dirname, 'dist'),
