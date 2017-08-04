@@ -20,6 +20,7 @@ export default class Observable extends EventEmitter{
       for(let i = 0, len = listeners[label].length; i < len; i++){
         if(listeners[label][i].name.includes(observerName)){
           index = i
+          break
         }
       }
       if(index !== null){
