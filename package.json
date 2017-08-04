@@ -1,6 +1,6 @@
 {
   "name": "certiorem",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "an implementation of the observer pattern in node using event emitter",
   "main": "./dist/backend.js",
   "scripts": {

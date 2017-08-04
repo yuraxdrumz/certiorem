@@ -13,7 +13,6 @@ fs.readdirSync('node_modules')
   })
 
 module.exports = {
-  devtool: 'source-map',
   entry: ['babel-polyfill','./index.js'],
   target: 'node',
   output: {
@@ -24,12 +23,6 @@ module.exports = {
   externals: nodeModules,
   plugins: [
     new webpack.IgnorePlugin(/\.(css|less)$/),
-    new WebpackNodeServerPlugin({retries: 0}),
-    new webpack.BannerPlugin({
-      banner: 'require("source-map-support").install();',
-      raw: true,
-      entryOnly: false
-    })
   ],
   module: {
     rules: [
