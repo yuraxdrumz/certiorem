@@ -2,7 +2,7 @@
   "name": "certiorem",
   "version": "1.0.0",
   "description": "an implementation of the observer pattern in node using event emitter",
-  "main": "dist/backend.js",
+  "main": "./dist/backend.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --progress --colors --watch",
@@ -19,7 +19,7 @@
     "webpack": "^3.0.0",
     "webpack-node-server-plugin": "^0.2.1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["nodejs","node","observer","pattern","declarative"],
+  "author": "Yuri Homyakov",
   "license": "ISC"
 }
