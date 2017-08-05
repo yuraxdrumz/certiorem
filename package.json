@@ -1,6 +1,6 @@
 {
   "name": "certiorem",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "an implementation of the observer pattern in node using event emitter",
   "main": "./dist/backend.js",
   "scripts": {
@@ -21,5 +21,6 @@
   },
   "keywords": ["nodejs","node","observer","pattern","declarative"],
   "author": "Yuri Homyakov",
+  "repository": "yuraxdrumz/certiorem",
   "license": "ISC"
 }
