@@ -10,6 +10,7 @@ export default class Observer{
   }
   // add a listener on a specific event, add this.name on fn.name
   subscribe(label, fn){
+    // TODO check if arrow func and replace for regular func in order to have bind this with name and parent emitter...
     Object.defineProperty(fn,'name',{
       enumerable: false,
       configurable: true,
