@@ -47,7 +47,7 @@ const RemoveListener = ({listeners}) =>{
 const ChildNotify = ({emit}) =>{
   let em = emit
   return {
-    childNotify:(label, ...args)=>{
+    emit:(label, ...args)=>{
       // same as emit but fired from child to notify parent that notifies all children
       return em(label, ...args)
     }
@@ -117,3 +117,4 @@ observer.subscribe('start',data=>console.log(data))
 observer2.subscribe('start',data=>console.log(data))
 observer.unsubscribe('start')
 main.emit('start', 'awsomeeeee')
+observer.emit('start', 'started in observer')

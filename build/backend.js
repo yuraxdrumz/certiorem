@@ -74,9 +74,8 @@ module.exports = __webpack_require__(1);
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__) {
+/***/ (function(module, exports) {
 
-"use strict";
 var _this = this;
 
 var Emit = function Emit(_ref) {
@@ -142,7 +141,7 @@ var ChildNotify = function ChildNotify(_ref4) {
 
   var em = emit;
   return {
-    childNotify: function childNotify(label) {
+    emit: function emit(label) {
       for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
         args[_key2 - 1] = arguments[_key2];
       }
@@ -218,6 +217,7 @@ observer2.subscribe('start', function (data) {
 });
 observer.unsubscribe('start');
 main.emit('start', 'awsomeeeee');
+observer.emit('start', 'started in observer');
 
 /***/ })
 /******/ ]);
