@@ -2,12 +2,15 @@
 An implementation of the observer pattern in node.js with event emitter.
 0 dependencies and usage is very straight forward and declarative.
 ## Usage
-since 1.0.32 - there are makeObservable and makeObserver decorators to turn a class into an observable or an observer,
-the makeObservable decorator receives an optional parent argument to share listeners with other observables and the second argument is the attach parent listeners, if parent exists.
-the makeObserver decorator receives a name and a parent like the createObserver function
 you have two functions in certiorem, one is called `createObservable` and the other is called `createObserver`
 `createObservable` creates a new instance of a parent class that will hold all the observers and notify them on events emitted, the `createObserver` creates a new instance of an observer that will talk directly to the observable instance.
 you can have as many observables as you want and for each observable you can have as many observers as you want
+
+# 1.0.32 features
+`added makeObservable and makeObserver decorators to extend existing classes`
+you can now extend your class to be an observable or an observer and even share listeners with other observables
+![Imgur](http://i.imgur.com/zowJ4YZ.png)
+
 First, install the package using npm:
 `npm install certiorem --save`
 Then, require it and use it like so:
