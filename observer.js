@@ -1,26 +1,44 @@
-// observer class
-export default class Observer{
-  constructor(name, parentEmitter){
-    this.name = name
-    this.parentEmitter = parentEmitter
+const Emit = ({listeners}) =>({
+  emit:(label, ...args)=>{
+    listeners = listeners[label]
+    if (listeners && listeners.length) {
+      listeners.forEach(listener => listener(...args))
+      return true
+    }
+    return false
   }
-  // remove listener on a specific event, this.name is passed an will be compared to fn.name which is set on subscription
-  unsubscribe(label){
-    this.parentEmitter.removeListener(label, this.name)
+})
+
+const ChildNotify = ({emit}) =>({
+  emit:(label, ...args)=>{
+    // same as emit but fired from child to notify parent that notifies all children
+    return emit(label, ...args)
   }
-  // add a listener on a specific event, add this.name on fn.name
-  subscribe(label, fn){
+})
+
+const Unsubscribe = ({parent, name}) =>({
+  unsubscribe: label =>{
+    parent.removeListener(label, name)
+  }
+})
+
+const Subscribe = ({parent, name}) =>({
+  subscribe:(label, fn)=>{
     Object.defineProperty(fn,'name',{
       enumerable: false,
       configurable: true,
       writable: true,
-      value: this.name
+      value: name
     })
-    // bind fn to this
-    this.parentEmitter.addListener(label, fn.bind(this))
+    parent.addListener(label, fn.bind(this))
   }
-  // emit change to parent
-  emit(label, ...args){
-    this.parentEmitter.childNotify(label, ...args)
-  }
+})
+
+
+export default function createObserver(name, parent){
+  return Object.assign({},
+    ChildNotify(Emit({listeners:parent.listeners})),
+    Subscribe({parent, name}),
+    Unsubscribe({parent, name})
+  )
 }

@@ -1,15 +1,5 @@
-import Observer from './observer'
-import Observable from './observable'
+import createObserver from './observer'
+import createObservable from './observable'
+import { makeObservable, makeObserver } from './decorators'
 
-// creates a new observable
-function createObservable(){
-  return new Observable()
-}
-
-// creates a new observer
-function createObserver(name, parent){
-  return new Observer(name, parent)
-}
-
-
-export { createObservable, createObserver }
+export { createObservable, createObserver, makeObserver, makeObservable }
