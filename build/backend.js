@@ -76,6 +76,8 @@ module.exports = __webpack_require__(1);
 /* 1 */
 /***/ (function(module, exports) {
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _this = this,
     _dec,
     _class,
@@ -212,6 +214,13 @@ function makeObserver(name, parent) {
   };
 }
 
+function observe(Class) {
+  //TODO write observe on prototype methods
+  var methods = Object.getOwnPropertyNames(Class.prototype);
+  console.log(Class.prototype[methods[1]].toString());
+  console.log(methods);
+}
+
 var main = createObservable();
 var observer = createObserver('observer1', main);
 var observer2 = createObserver('observer2', main);
@@ -237,9 +246,21 @@ observer3.subscribe('start', function (data) {
   return console.log(data);
 });
 main.emit('start', 'started in main');
-var Obs = (_dec2 = makeObserver('dsasd', t), _dec2(_class2 = function Obs() {
-  _classCallCheck(this, Obs);
-}) || _class2);
+
+var Obs = (_dec2 = makeObserver('dsasd', t), observe(_class2 = _dec2(_class2 = function () {
+  function Obs() {
+    _classCallCheck(this, Obs);
+  }
+
+  _createClass(Obs, [{
+    key: 'start',
+    value: function start() {
+      console.log('started');
+    }
+  }]);
+
+  return Obs;
+}()) || _class2) || _class2);
 
 var obs = new Obs();
 obs.subscribe('start', function () {

@@ -98,6 +98,12 @@ function makeObserver(name, parent){
   }
 }
 
+function observe(Class){
+  //TODO write observe on prototype methods
+  let methods = Object.getOwnPropertyNames(Class.prototype)
+  console.log(Class.prototype[methods[1]].toString())
+  console.log(methods)
+}
 
 let main = createObservable()
 let observer = createObserver('observer1', main)
@@ -120,10 +126,16 @@ let t = new Test()
 let observer3 = createObserver('d', t)
 observer3.subscribe('start',data=>console.log(data))
 main.emit('start', 'started in main')
+
+@observe
 @makeObserver('dsasd', t)
 class Obs{
   constructor(){
 
+  }
+
+  start(){
+    console.log('started')
   }
 }
 let obs = new Obs()
